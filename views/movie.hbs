@@ -1,0 +1,56 @@
+{{!-- call header from partials folder --}}
+{{> menu}}
+
+
+<div class=" moviePage">
+    <div class="img_wapper"><img src="{{movie.large_cover_image}}" /></div>
+    <div class="movie_details">
+        <h1>{{movie.title_english}} <span>({{movie.year}})</span></h1>
+        <div class="genre_container">
+            {{#each movie.genres}}
+            <span class="genre">{{this}}</span>
+            {{/each}}
+        </div>
+        <p class="description">{{movie.description_full}}</p>
+        <h6>Average rating: <span class="total_rating">{{averageResult}}</span></h6>
+        {{#if user}}
+        <h6>My rating: <span class="total_rating">{{myRating}}</span></h6>
+        {{/if}}
+        <h6>total users rated this movie: <span class="total_rating">{{total}}</span></h6>
+        <div class="movie_rate rating_spans" id="rating_spans" class="rating_spans" data-movie-id="{{movie.id}}"
+            data-user-id={{user.id}}>
+            <form class="rating" data-user-id="{{../userId}}" data-movie-id="{{id}}">
+                <label>
+                    <input type="radio" name="stars" value="1" {{{printChecked myRating 1}}} />
+                    <span class="icon">★</span>
+                </label>
+                <label>
+                    <input type="radio" name="stars" value="2" {{{printChecked myRating 2}}} />
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                </label>
+                <label>
+                    <input type="radio" name="stars" value="3" {{{printChecked myRating 3}}} />
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                </label>
+                <label>
+                    <input type="radio" name="stars" value="4" {{{printChecked myRating 4}}} />
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                </label>
+                <label>
+                    <input type="radio" name="stars" value="5" {{{printChecked myRating 5}}} />
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                </label>
+            </form>
+        </div>
+    </div>
+</div>

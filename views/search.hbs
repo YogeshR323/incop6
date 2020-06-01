@@ -1,0 +1,46 @@
+{{!-- call header from partials folder --}}
+{{> menu}}
+
+<div class="search">
+    <input type="search" name="search" placeholder="Search by title..." class="input-search" id="search">
+    <a href="/searchresults" type="button" id="search-btn" class="input-search">Search!</a>
+    {{!-- logic - on search submit, create new page (search results) which shows matches on title_english --}}
+    <div class="genre_wrapper">
+        <a href="/searchresults?genre=action">Action</a>
+        <a href="/searchresults?genre=adventure">Adventure</a>
+        <a href="/searchresults?genre=animation">Animation</a>
+        <a href="/searchresults?genre=comedy">Comedy</a>
+        <a href="/searchresults?genre=crime">Crime</a>
+        <a href="/searchresults?genre=documentary">Documentary</a>
+        <a href="/searchresults?genre=drama">Drama</a>
+        <a href="/searchresults?genre=fantasy">Fantasy</a>
+        <a href="/searchresults?genre=horror">Horror</a>
+        <a href="/searchresults?genre=romance">Romance</a>
+
+
+    </div>
+</div>
+<div class="container ">
+    <div class="cards_container">
+        {{!-- check if movies passing from router  = true --}}
+        {{#if movies}}
+        {{!-- for each movie, call a loop --}}
+        {{#each movies}}
+        <div class="movie_card " style="background-image: url('{{large_cover_image}}');">
+            <div class="movie_card_content">
+                <div class="movie_header">
+                    <h3>{{title_english}}</h3>
+                    <span>{{year}}</span>
+                    {{!-- <span>{{ConvertRateTo5stars rating}}</span> --}}
+                    <span>rate {{rating}}</span>
+                </div>
+                <a href="/movie/{{id}}">Click for more details</a>
+            </div>
+        </div>
+        {{/each}}
+        {{/if}}
+    </div>
+</div>
+{{!-- {{background_image} --}}
+{{!-- {{title_long}} --}}
+{{!-- {{synopsis}} --}}
