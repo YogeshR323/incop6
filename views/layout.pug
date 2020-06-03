@@ -1,0 +1,28 @@
+doctype html
+html
+  head
+    title Location Social Network
+    link(rel='stylesheet', href='/css/bootstrap.css')
+    link(rel='stylesheet', href='/css/custom.css')
+    block scripts
+      script(src='/js/jquery.min.js')
+      script(src='/js/bootstrap.min.js')
+
+  body
+    nav.navbar.navbar-expand-sm.bg-dark.navbar-dark
+      // Brand/logo
+      a.navbar-brand(href="/") Locations
+      ul.navbar-nav
+        if (typeof(user) == 'undefined')
+          li.nav-item
+            a.nav-link(href="/register") Register
+          li.nav-item
+            a.nav-link(href="/login") Log In
+        else
+          li.nav-item
+            a.nav-link(href="/logout") Log Out
+          li.nav-item 
+            a.nav-link(href="/addLocation") Add Location
+
+    .container
+      block content

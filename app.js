@@ -1,42 +1,95 @@
-const express = require('express')
-const exphbs = require('express-handlebars')
-const session = require('express-session')
-const path = require('path')
-const logger = require('morgan')
-const createError = require('http-errors')
+const express = require('express');
+const path = require('path');
+const favicon = require('serve-favicon');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const session = require('cookie-session');
+const bodyParser = require('body-parser');
+const multer = require('multer');
 
-const { errorHandler } = require('./helpers/error.js')
-const { sessConfig } = require('./helpers/config.js')
-const { hbsHelpers } = require('./helpers/handlebarHelpers.js')
-const router = require('./routes/routes.js')
+const mongoose = require('mongoose');
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const flash = require('connect-flash');
 
-const app = express()
+const app = express();
 
-const hbs = exphbs.create({
-  extname: '.hbs',
-  helpers: hbsHelpers,
-  partialsDir: path.join(__dirname, 'views/partials'),
-})
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'pug');
 
-app.set('port', process.env.PORT || 3000)
+// uncomment after placing your favicon in /public
+//app.use(favicon(__dirname + '/public/favicon.ico'));
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
+// app.use(bodyParser.multipart({extended: false}));
+app.use(cookieParser());
+app.use(session({keys: ['secretkey1', 'secretkey2', '...']}));
+app.use(flash());
 
-app.engine('hbs', hbs.engine)
-app.set('view engine', 'hbs')
-app.set('views', path.resolve(__dirname, 'views'))
 
-app.use(express.static(path.join(__dirname, './public')))
-app.use(express.json())
-app.use(express.urlencoded({ extended: false }))
+app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(session(sessConfig))
+// Configure passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
 
-app.use(router) // dont put routers here
+// Configure passport-local to use user model for authentication
+const User = require('./models/user');
+passport.use(new LocalStrategy(User.authenticate()));
 
-if (process.env.NODE_ENV !== 'production') app.use(logger('dev'))
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
-app.use((req, res, next) => {
-  next(createError(404))
-})
-app.use(errorHandler)
+// Connect mongoose
+mongoose.connect('mongodb://localhost/project6', { useNewUrlParser: true, useUnifiedTopology: true }, function(err) {
+  if (err) {
+    console.log('Could not connect to mongodb on localhost. Ensure that you have mongodb running on localhost and mongodb accepts connections on standard ports!');
+  } else {
+    console.log("db connected!")
+  }
+});
+mongoose.connection.once('once', function(){
+  console.log("Connection has been made"); 
+}).on('error', function(error){
+  console.log("connection error:", error)
+});
 
-module.exports = app
+mongoose.set('useCreateIndex', true);
+
+// Register routes
+app.use('/', require('./routes'));
+
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  const err = new Error('Not Found');
+  err.status = 404;
+  next(err);
+});
+
+// error handlers
+
+// development error handler
+// will print stacktrace
+if (app.get('env') === 'development') {
+  app.use(function(err, req, res, next) {
+    res.status(err.status || 500);
+    res.render('error', {
+      message: err.message,
+      error: err
+    });
+  });
+}
+
+// production error handler
+// no stacktraces leaked to user
+app.use(function(err, req, res, next) {
+  res.status(err.status || 500);
+  res.render('error', {
+    message: err.message,
+    error: {}
+  });
+});
+
+module.exports = app;

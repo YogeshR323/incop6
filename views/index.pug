@@ -1,0 +1,7 @@
+extends layout
+
+block content
+  if (user)
+    p You are currently logged in as #{user.firstname}
+  else
+    p You are currently not logged in. Please login or register...

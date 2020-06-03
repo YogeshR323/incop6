@@ -1,0 +1,12 @@
+
+.container
+  .cards_container
+    if locations
+        each location in locations
+            .location_card(style='background-image: example.com/test.jpg;')
+                .location_card_content
+                    .location_header
+                        h3 {{title_english}}
+                        span rate {{rating}}
+                    a(href='/location/{{id}}') Click for more details
+img(src="../uploads/30cfc004ebd155a47fde742ed8fceff3", alt="")

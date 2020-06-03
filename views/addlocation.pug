@@ -1,0 +1,30 @@
+extends layout
+
+block content
+  h2 Add Location
+
+  form(action="/addlocation",method="post", enctype="multipart/form-data")
+    div
+      label Name of location
+      input(type="text",name="title")
+
+    div
+      label Description
+      input(type="text",name="description")
+      
+    div
+      label Upload Image
+      input#myFile(type='file' name='locationimage' )
+    //- .mt-3
+
+    div
+      input(type="submit",value="Upload")
+
+
+     
+    //- script.
+    //-     // Add the following code if you want the name of the file appear on select
+    //-     $(".custom-file-input").on("change", function() {
+    //-     var fileName = $(this).val().split("\\\").pop();
+    //-     $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    //-     });
