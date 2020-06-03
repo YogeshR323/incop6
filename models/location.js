@@ -1,15 +1,12 @@
-let mongoose = require('mongoose'),
-  Schema = mongoose.Schema;
-  
+let mongoose = require('mongoose')
+
+let { Schema } = mongoose
+
 const Location = new Schema({
-  locationimage: {data: Buffer, contentType: String},
+  image: { filename: String, data: Buffer, contentType: String },
   title: { type: String, required: true },
   description: { type: String, required: true },
+  contentType: { type: String, required: true },
+})
 
-});
-
-
-
-module.exports = mongoose.model('Location', Location);
-  
-  
+module.exports = mongoose.model('Location', Location)
