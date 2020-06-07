@@ -1,9 +1,9 @@
 extends layout
 
 block content
-  h2 Register
+  h2 Sign Up!
 
-  form(action="/register",method="post")
+  form(action="/signup",method="post")
     div
       label e-mail
       input(type="text",name="username")
@@ -25,4 +25,4 @@ block content
       input(type="password",name="confirmPassword")
 
     div
-      input(type="submit",value="Register")
+      input(type="submit",value="Sign Up")

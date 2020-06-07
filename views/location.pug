@@ -1,0 +1,27 @@
+extends layout
+
+block content
+    .locationPage
+    .img_wapper
+        img(src=`../uploads/${onelocation[0].image.filename}`)
+    .location_details
+        h1
+            | #{onelocation[0].title} 
+        //- span ({{onelocation[0].year}})
+        //- .genre_container
+        //- | {{#each onelocation[0].genres}}
+        //- span.genre {{this}}
+        //- |             {{/each}}
+        p.description #{onelocation[0].description}
+    //-     h6
+    //-     | Average rating: 
+    //-     span.total_rating {{averageResult}}
+    //-     |         {{#if user}}
+    //-     h6
+    //-     | My rating: 
+    //-     span.total_rating {{myRating}}
+    //-     |         {{/if}}
+    //-     h6
+    //-     | total users rated this onelocation: 
+    //-     span.total_rating {{total}}
+        

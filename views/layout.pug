@@ -2,8 +2,12 @@ doctype html
 html
   head
     title Location Social Network
+    
+
     link(rel='stylesheet', href='/css/bootstrap.css')
     link(rel='stylesheet', href='/css/custom.css')
+    link(rel="")
+    link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css", integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh", crossorigin="anonymous")
     block scripts
       script(src='/js/jquery.min.js')
       script(src='/js/bootstrap.min.js')
@@ -15,10 +19,12 @@ html
       ul.navbar-nav
         if (typeof(user) == 'undefined')
           li.nav-item
-            a.nav-link(href="/register") Register
+            a.nav-link(href="/signup") signup
           li.nav-item
             a.nav-link(href="/login") Log In
         else
+          li.nav-iten
+            a.nav-link(href=`/user/${user._id}`) #{user.firstname}'s Profile
           li.nav-item
             a.nav-link(href="/logout") Log Out
           li.nav-item 

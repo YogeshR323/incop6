@@ -1,0 +1,35 @@
+extends layout
+
+
+block content
+  h2.text-center Dashboard
+
+  .row
+    .offset-sm-2.col-sm-8
+      .jumbotron.text-center.
+        Welcome to your dashboard page, #{user.firstname}.
+  h2 Update Profile!
+
+  form(action="/user/", method="post")
+    div
+      label e-mail
+      input(type="text",name="username", value = `${user.email}`)
+
+    div
+      label first name
+      input(type="text",name="firstname", value = `${user.firstname}`)
+      
+    div
+      label last name
+      input(type="text",name="lastname", value = `${user.lastname}`)
+
+    div
+      label Password
+      input(type="password",name="password")
+
+    div
+      label Confirm Password
+      input(type="password",name="confirmPassword")
+
+    div
+      input(type="submit",value="Update")

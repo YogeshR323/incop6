@@ -1,0 +1,20 @@
+Add Validator
+https://www.freecodecamp.org/news/introduction-to-mongoose-for-mongodb-d2a7aa593c57/
+
+CreateUser.js
+initialise users: create and add users to the database 
+
+Single locaiton page
+    make page
+    display comments
+    add comments
+    add like/recomendation button
+
+User page
+    show details
+    update details
+
+Admin page
+    https://stackoverflow.com/questions/59809055/how-to-implement-an-admin-approval-system-for-posting-blogs-in-node-js-and-expre
+    show isApproved location = false
+    update isApproved to true
