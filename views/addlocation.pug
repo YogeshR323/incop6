@@ -4,21 +4,21 @@ block content
   h2 Add Location
 
   form(action="/addLocation",method="post", enctype="multipart/form-data")
-    div
+    .form-group
       label Name of location
-      input(type="text",name="title")
+      input#title.form-control(type="text",name="title")
 
-    div
+    .form-group
       label Description
-      input(type="text",name="description")
+      input#description.form-control(type="text",name="description")
       
-    div
+    .form-group
       label Upload Image
-      input#myFile(type='file' name='locationimage' )
+      input#locationimage.form-control(type='file' name='locationimage' )
     //- .mt-3
 
-    div
-      input(type="submit",value="Upload")
+    .col-md-12.text-center.mb-3
+      input.btn.btn-block.mybtn.btn-primary.tx-tfm(type="submit",value="Upload")
 
 
      

@@ -66,6 +66,8 @@ router.post('/addLocation', upload.single('locationimage'), (req, res) => {
     description: req.body.description,
     contentType: req.file.mimetype,
     image: { filename: req.file.filename, data: img2, contentType: req.file.mimetype },
+    uploadedby: req.user.email,
+    isApproved: false,
   })
 
   db.collection('locations').insertOne(locationNew, (err, result) => {
@@ -81,7 +83,14 @@ router.post('/addLocation', upload.single('locationimage'), (req, res) => {
 // router.get('/locations', locationC.locationsGet)
 
 router.get('/location/:id', locationC.locationGet)
-router.get('/user/:id', userC.userGet)
+router.post('/location', locationC.locationRatePost) // temporary: to test passing of variables/objects
+router.post('/rating', locationC.ratingPost)
+router.post('/comments', locationC.commentPost)
+router.get('/adminPanel', locationC.adminPanelGet)
+
+router.get('/user/:id', userC.userProfileGet)
 router.post('/user/', userC.updatePost)
+
+router.get('/approve/:id', locationC.approveLocation)
 
 module.exports = router

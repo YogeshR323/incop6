@@ -1,0 +1,51 @@
+extends layout
+
+block content
+    h1 Admin Panel
+    
+    if (length > 0)
+        h3 The following needs to be approved
+        each location in locations
+            .container.group
+            .grid-1-5(style=`background-image: url(../uploads/${location.image.filename});`)
+                a(href=`/location/${location._id}`) 
+                    h2 #{location.title}
+                h3
+                
+                p #{location.description}
+                ul
+                li Uploaded by: #{location.uploadedby}
+                
+                a.button(href=`/approve/${location._id}`) Approve
+    else
+        h4 No locations needs to be appoved
+
+
+
+
+
+
+    //- .table-users
+    //- .header Users
+    //- table(cellspacing='0')
+    //-     tr
+    //-         th Picture
+    //-         th Name
+    //-         th Description
+    //-         th Uploaded by
+    //-         th Approved
+        
+    //-     if locations
+    //-         each location in locations
+    //-             tr
+    //-                 td
+    //-                     .img_panel 
+    //-                         img(src=`../uploads/${location.image.filename}`)
+    //-                 td #{location.title}
+    //-                 td #{location.description}
+    //-                 td #{location.uploadedby}
+    //-                 td 
+    //-                     input(type='checkbox' name='myTextEditBox' value='checked' style='margin-left:auto; margin-right:auto;')
+    //-     else
+    //-         p All locations have been approved
+                

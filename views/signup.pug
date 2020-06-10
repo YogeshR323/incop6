@@ -2,27 +2,32 @@ extends layout
 
 block content
   h2 Sign Up!
+  .row1
+  if error
+    .col-md-5.mx-auto
+      .alert.alert-warning(role='alert')
+        #{error}
+  .row1
+    form(action="/signup",method="post")
+      .form-group
+        label e-mail
+        input#email.form-control(type="text",name="username")
 
-  form(action="/signup",method="post")
-    div
-      label e-mail
-      input(type="text",name="username")
+      .form-group
+        label first name
+        input#firstname.form-control(type="text",name="firstname")
+        
+      .form-group
+        label last name
+        input#lastname.form-control(type="text",name="lastname")
 
-    div
-      label first name
-      input(type="text",name="firstname")
-      
-    div
-      label last name
-      input(type="text",name="lastname")
+      .form-group
+        label Password
+        input#password.form-control(type="password",name="password")
 
-    div
-      label Password
-      input(type="password",name="password")
+      .form-group
+        label Confirm Password
+        input#password.form-control(type="password",name="confirmPassword")
 
-    div
-      label Confirm Password
-      input(type="password",name="confirmPassword")
-
-    div
-      input(type="submit",value="Sign Up")
+      .col-md-12.text-center.mb-3
+        input.btn.btn-block.mybtn.btn-primary.tx-tfm(type="submit",value="Sign Up")

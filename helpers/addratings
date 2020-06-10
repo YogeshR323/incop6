@@ -1,0 +1,21 @@
+open terminal 
+mongo --host mongodb://localhost/project6
+
+db.rateTable.insert( { location_id: ObjectId("5ed751a4a2150a77f443043c"), user_id: ObjectId("5ed503a967b5907144cc7c31"), rate: 1  } )
+db.rateTable.insert( { location_id: ObjectId("5ed751aca2150a77f443043d"), user_id: ObjectId("5ed503a967b5907144cc7c31"), rate: 1  } )
+db.rateTable.insert( { location_id: ObjectId("5ed751b7a2150a77f443043e"), user_id: ObjectId("5ed503a967b5907144cc7c31"), rate: 1  } )
+db.rateTable.insert( { location_id: ObjectId("5ed751c0a2150a77f443043f"), user_id: ObjectId("5ed503a967b5907144cc7c31"), rate: 1  } )
+db.rateTable.insert( { location_id: ObjectId("5ed774a9eec00a63c4770601"), user_id: ObjectId("5ed503a967b5907144cc7c31"), rate: 1  } )
+db.rateTable.insert( { location_id: ObjectId("5ed980d02293274304a68cbd"), user_id: ObjectId("5ed503a967b5907144cc7c31"), rate: 1  } )
+db.rateTable.insert( { location_id: ObjectId("5ed751a4a2150a77f443043c"), user_id: ObjectId("5edc82ee6402e35378843194"), rate: 1  } )
+db.rateTable.insert( { location_id: ObjectId("5ed751aca2150a77f443043d"), user_id: ObjectId("5edc82ee6402e35378843194"), rate: 1  } )
+db.rateTable.insert( { location_id: ObjectId("5ed751b7a2150a77f443043e"), user_id: ObjectId("5edc82ee6402e35378843194"), rate: 1  } )
+db.rateTable.insert( { location_id: ObjectId("5ed751c0a2150a77f443043f"), user_id: ObjectId("5edc82ee6402e35378843194"), rate: 1  } )
+db.rateTable.insert( { location_id: ObjectId("5ed774a9eec00a63c4770601"), user_id: ObjectId("5edc82ee6402e35378843194"), rate: 1  } )
+db.rateTable.insert( { location_id: ObjectId("5ed980d02293274304a68cbd"), user_id: ObjectId("5edc82ee6402e35378843194"), rate: 1  } )
+db.rateTable.insert( { location_id: ObjectId("5ed751a4a2150a77f443043c"), user_id: ObjectId("5edb56eb10e5114038de7417"), rate: 1  } )
+db.rateTable.insert( { location_id: ObjectId("5ed751aca2150a77f443043d"), user_id: ObjectId("5edb56eb10e5114038de7417"), rate: 1  } )
+db.rateTable.insert( { location_id: ObjectId("5ed751b7a2150a77f443043e"), user_id: ObjectId("5edb56eb10e5114038de7417"), rate: 1  } )
+db.rateTable.insert( { location_id: ObjectId("5ed751c0a2150a77f443043f"), user_id: ObjectId("5edb56eb10e5114038de7417"), rate: 1  } )
+db.rateTable.insert( { location_id: ObjectId("5ed774a9eec00a63c4770601"), user_id: ObjectId("5edb56eb10e5114038de7417"), rate: 1  } )
+db.rateTable.insert( { location_id: ObjectId("5ed980d02293274304a68cbd"), user_id: ObjectId("5edb56eb10e5114038de7417"), rate: 1  } )

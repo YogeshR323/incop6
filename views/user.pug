@@ -8,28 +8,25 @@ block content
     .offset-sm-2.col-sm-8
       .jumbotron.text-center.
         Welcome to your dashboard page, #{user.firstname}.
+  .row
   h2 Update Profile!
 
   form(action="/user/", method="post")
-    div
+    .form-group
       label e-mail
-      input(type="text",name="username", value = `${user.email}`)
-
-    div
+      input#email.form-control(type="text",name="username", value = `${user.email}`)
+    .form-group
       label first name
-      input(type="text",name="firstname", value = `${user.firstname}`)
-      
-    div
+      input#firstname.form-control(type="text",name="firstname", value = `${user.firstname}`)  
+    .form-group
       label last name
-      input(type="text",name="lastname", value = `${user.lastname}`)
-
-    div
+      input#lastname.form-control(type="text",name="lastname", value = `${user.lastname}`)
+    .form-group
       label Password
-      input(type="password",name="password")
-
-    div
+      input#password.form-control(type="password",name="password")
+    .form-group
       label Confirm Password
-      input(type="password",name="confirmPassword")
+      input#password.form-control(type="password",name="confirmPassword")
 
-    div
-      input(type="submit",value="Update")
+    .col-md-12.text-center.mb-3
+      input.btn.btn-block.mybtn.btn-primary.tx-tfm(type="submit",value="Update")

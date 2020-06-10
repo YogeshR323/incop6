@@ -1,0 +1,24 @@
+extends layout
+
+block content
+    .container
+        .cards_container
+            if locations
+                each location in locations
+                    
+                    .location_card(style=`background-image: url(../uploads/${location.image.filename});`)
+                        .location_card_content
+                            .location_header
+                                h3 #{location.title}
+                                span Number of comments(placeholder)
+                                span number of reccomendations (placeholder)
+                                p #{location.description}
+                                //- p #{location._id}
+                                //- p #{location.image.filename}
+                                //- p #{location.image.contentType}
+                                img(src=`../uploads/${location.image.filename}`)
+                                //- img(src="../uploads/SydneyOperaHouse20182.jpg")
+                                //- img(src=location.image.data)
+
+                            a(href=`/location/${location._id}`) Click for more details
+                    //- input(type="submit",value="Approve")

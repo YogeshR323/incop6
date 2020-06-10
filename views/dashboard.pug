@@ -1,0 +1,35 @@
+extends layout
+
+block content
+    .container.login_page
+        .row
+            if error
+            .col-md-5.mx-auto
+                .alert.alert-warning(role='alert')
+                    #{error}        
+        .row
+            .col-md-5.mx-auto
+                #second
+                    .myform.form
+                        .logo.mb-3
+                            .col-md-12.text-center
+                                h1 Dashboard
+                        form#form2(action="/user/", method="post")
+                            .form-group
+                                label(for='exampleInputEmail1') First Name
+                                input#firstname.form-control(type='text' name='firstname' aria-describedby='emailHelp' value = `${user.firstname}`)
+                            .form-group
+                                label(for='exampleInputEmail1') Last Name
+                                input#lastname.form-control(type='text' name='lastname' aria-describedby='emailHelp' value = `${user.lastname}`)
+                            .form-group
+                                label(for='exampleInputEmail1') Email address
+                                input#email.form-control(type='email' name='username' aria-describedby='emailHelp' value = `${user.email}`)
+                            .form-group
+                                label(for='exampleInputEmail1') Password
+                                input#password.form-control(type='password' name='password' aria-describedby='emailHelp' placeholder='Enter Password')
+                            .form-group
+                                label(for='exampleInputEmail1') confirm password
+                                input#password.form-control(type='password' name='confirmPassword' aria-describedby='emailHelp' placeholder='confirm Password')
+                            .col-md-12.text-center.mb-3
+                                input.btn.btn-block.mybtn.btn-primary.tx-tfm(type='submit' value='Update')
+

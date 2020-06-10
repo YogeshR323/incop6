@@ -7,7 +7,7 @@ exports.signupGet = (req, res) => {
   res.render('signup', {})
 }
 
-exports.signupPost = (req, res, next) => {
+exports.signupPost = async (req, res, next) => {
   console.log('registering user')
   let trimStr = (str) => String(str).trim()
   let email = req.body.username
@@ -24,12 +24,13 @@ exports.signupPost = (req, res, next) => {
   email = trimStr(email)
   if (password !== confirmPassword) throw createError(400, 'Passwords do not match.')
 
-  User.register(
+  await User.register(
     new User({
       username: email,
       email,
       firstname,
       lastname,
+      isAdmin: false,
     }),
     req.body.password,
     function (err) {
@@ -56,7 +57,7 @@ exports.logoutGet = (req, res, next) => {
   }
 }
 
-exports.userGet = (req, res, next) => {
+exports.userProfileGet = (req, res, next) => {
   try {
     res.render('user', { user: req.user })
   } catch (error) {
@@ -64,7 +65,7 @@ exports.userGet = (req, res, next) => {
   }
 }
 
-exports.updatePost = (req, res, next) => {
+exports.updatePost = async (req, res, next) => {
   console.log('updating  user')
   let trimStr = (str) => String(str).trim()
   let email = req.body.username
@@ -82,7 +83,7 @@ exports.updatePost = (req, res, next) => {
   email = trimStr(email)
   if (password !== confirmPassword) throw createError(400, 'Passwords do not match.')
 
-  User.findByIdAndUpdate(
+  await User.findByIdAndUpdate(
     req.user._id,
     {
       username: email,

@@ -7,6 +7,8 @@ const Location = new Schema({
   title: { type: String, required: true },
   description: { type: String, required: true },
   contentType: { type: String, required: true },
+  uploadedby: String,
+  isApproved: Boolean,
 })
 
 module.exports = mongoose.model('Location', Location)

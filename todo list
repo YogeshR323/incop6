@@ -4,7 +4,7 @@ https://www.freecodecamp.org/news/introduction-to-mongoose-for-mongodb-d2a7aa593
 CreateUser.js
 initialise users: create and add users to the database 
 
-Single locaiton page
+Single location page
     make page
     display comments
     add comments
@@ -13,8 +13,13 @@ Single locaiton page
 User page
     show details
     update details
+    show uploaded locations (approved vs pending)
 
 Admin page
     https://stackoverflow.com/questions/59809055/how-to-implement-an-admin-approval-system-for-posting-blogs-in-node-js-and-expre
     show isApproved location = false
     update isApproved to true
+    change css https://codepen.io/ajaypatelaj/full/zIBjJ or https://codepen.io/BraadMartin/full/NPPzJX
+
+Error Handling
+    user profile page, mismatched passwords... display on user page

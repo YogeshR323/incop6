@@ -1,27 +1,49 @@
 extends layout
 
 block content
-    .locationPage
-    .img_wapper
-        img(src=`../uploads/${onelocation[0].image.filename}`)
-    .location_details
-        h1
-            | #{onelocation[0].title} 
-        //- span ({{onelocation[0].year}})
-        //- .genre_container
-        //- | {{#each onelocation[0].genres}}
-        //- span.genre {{this}}
-        //- |             {{/each}}
-        p.description #{onelocation[0].description}
-    //-     h6
-    //-     | Average rating: 
-    //-     span.total_rating {{averageResult}}
-    //-     |         {{#if user}}
-    //-     h6
-    //-     | My rating: 
-    //-     span.total_rating {{myRating}}
-    //-     |         {{/if}}
-    //-     h6
-    //-     | total users rated this onelocation: 
-    //-     span.total_rating {{total}}
-        
+    .row1
+        if message != ''
+            p #{message}
+    .row1
+        .locationPage
+            .img_wapper
+                img(src=`../uploads/${onelocation.image.filename}`)
+                .location_details
+                    h1
+                        | #{onelocation.title} 
+                    p.description #{onelocation.description}
+
+                    if !(onelocation.isApproved)
+                        a.button(href=`/approve/${onelocation._id}`) Approve
+                if (onelocation.isApproved)
+                    .singleColumn
+                        .column_pict
+                            if user
+                                if heartclass > 0
+                                    .heart.is-active#rated(data-location-id=`${onelocation._id}` data-user-id=`${user._id}` data-heart-id="heart-is-active")
+                                else
+                                    .heart#rated(data-location-id=`${onelocation._id}` data-user-id=`${user._id}` data-heart-id='heart')
+                            else
+                                .heart#rated(data-location-id=`${onelocation._id}`  data-heart-id='heart')
+                            //- i.fa.fa-3x.fa-heart(onclick='myFunction(this)')
+                            .count #{totalRated} Likes
+    if user && (onelocation.isApproved)
+        .row1
+            .commentForm
+                form(action="/comments",method="post")
+                    .form-group
+                        label Your comments about #{onelocation.title}
+                        textarea#comment.form-control(type="text",name="comment", placeholder="Enter your comments here" )
+                    .form-group
+                        input#email.form-control(name="locationId" ,value =`${onelocation._id}`,type="hidden")
+                        input#email.form-control(name="user" ,value =`${user}`,type="hidden")
+                    .col-md-12.text-center.mb-3
+                       input.btn.btn-block.mybtn.btn-primary.tx-tfm(type="submit",value="Submit comment")
+
+
+
+
+
+
+
+//- (onclick=`updateRateTable(${onelocation._id}, ${user._id}, heartclass)`)
