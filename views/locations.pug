@@ -2,21 +2,21 @@ extends layout
 
 block content
     .container
-        .cards_container
-            if locations
-                each location in locations
-                    .location_card(style=`background-image: url(../uploads/${location.image.filename});`)
-                        .location_card_content
-                            .location_header
-                                h3 #{location.title}
-                                span Number of comments(placeholder)
-                                span number of reccomendations (placeholder)
-                                p #{location.description}
-                                //- p #{location._id}
-                                //- p #{location.image.filename}
-                                //- p #{location.image.contentType}
-                                img(src=`../uploads/${location.image.filename}`)
-                                //- img(src="../uploads/SydneyOperaHouse20182.jpg")
-                                //- img(src=location.image.data)
+        .row1
+            if message != ''
+                .col-md-5mx-auto
+                    .alert.alert-error #{message}
+        .row1
+            .cards_container
+                if locations
+                    each location in locations
+                        .location_card(style=`background-image: url(../uploads/${location.image.filename});`)
+                            .location_card_content
+                                .location_header
+                                    h3 #{location.title}
+                                    span Number of comments(placeholder)
+                                    span number of reccomendations (placeholder)
+                                    p #{location.description}
+                                    img(src=`../uploads/${location.image.filename}`)
 
-                            a(href=`/location/${location._id}`) Click for more details
+                                a(href=`/location/${location._id}`) Click for more details

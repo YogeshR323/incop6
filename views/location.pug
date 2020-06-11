@@ -27,6 +27,9 @@ block content
                                 .heart#rated(data-location-id=`${onelocation._id}`  data-heart-id='heart')
                             //- i.fa.fa-3x.fa-heart(onclick='myFunction(this)')
                             .count #{totalRated} Likes
+    .row1
+        if (onelocation.isApproved)
+            h2 Comments about #{onelocation.title} 
     if user && (onelocation.isApproved)
         .row1
             .commentForm
@@ -40,6 +43,21 @@ block content
                     .col-md-12.text-center.mb-3
                        input.btn.btn-block.mybtn.btn-primary.tx-tfm(type="submit",value="Submit comment")
 
+    .row1
+        .commentContainer
+            for comment in comments
+                .clearfix
+                    .comments-item-head
+                        .comment-item-author
+                            x #{comment.firstname} #{comment.lastname}
+                            span.post-divider  | 
+                            | #{comment.updatedAt}
+                    .comment-item-text
+                        p #{comment.comment}
+        if !user
+            .loginText
+                a(href='/login') log in 
+                | to submit your comments and like places
 
 
 

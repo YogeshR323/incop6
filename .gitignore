@@ -5,3 +5,5 @@ helpers/config.js
 node_modules
 debug.log
 /public/uploads
+todo list
+/old

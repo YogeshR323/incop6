@@ -33,7 +33,7 @@ body {
 } */
 
 .container {
-  margin: 0 auto;
+  margin: 0 auto 25px;
   width: 90%;
   max-width: 1200px;
 }
@@ -450,4 +450,49 @@ sup,
 .fa:hover {
   /* color: rgb(224, 44, 155); */
   color: pink;
+}
+/* comment fields */
+.commentContainer {
+  margin-left: 70px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.comments-item-head {
+  position: relative;
+  color: #80807f;
+}
+.comments-item-head .post-divider {
+  color: #2e2e2e;
+}
+
+.comment-item-author x {
+  font-weight: bold;
+  color: #b80c2d;
+}
+
+.comment-item-time {
+  margin: 10px 0;
+}
+
+.comment-item-text {
+}
+.clearfix {
+  *zoom: 1;
+  border: 1px solid black;
+  padding-left: 5px;
+}
+
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  line-height: 0;
+  content: '';
+}
+
+.clearfix:after {
+  clear: both;
+}
+.loginText {
+  text-align: center;
 }

@@ -42,14 +42,6 @@ passport.use(new LocalStrategy(User.authenticate()))
 passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
 
-// mongoose.connection
-//   .once('once', function () {
-//     console.log('Connection has been made')
-//   })
-//   .on('error', function (error) {
-//     console.log('connection error:', error)
-//   })
-
 // Register routes
 app.use('/', require('./routes'))
 

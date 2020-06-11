@@ -3,7 +3,11 @@ extends layout
 
 block content
   h2.text-center Dashboard
-
+  .row
+  if error != ''
+    .col-md-5mx-auto
+      .alert.alert-error #{error}
+        #{error}
   .row
     .offset-sm-2.col-sm-8
       .jumbotron.text-center.

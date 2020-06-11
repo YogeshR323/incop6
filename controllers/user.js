@@ -1,7 +1,6 @@
 const passport = require('passport')
 const createError = require('http-errors')
 const User = require('../models/user')
-const db = require('../dbconnect')
 
 exports.signupGet = (req, res) => {
   res.render('signup', {})
@@ -15,14 +14,15 @@ exports.signupPost = async (req, res, next) => {
   let { lastname } = req.body
   let { password } = req.body
   let { confirmPassword } = req.body
-  console.log(req.body)
 
   if (!firstname || !lastname || !password || !email)
-    throw createError(400, 'all Fields are required')
+    return res.render('signup', { error: 'all Fields are required' })
+
   firstname = trimStr(firstname)
   lastname = trimStr(lastname)
   email = trimStr(email)
-  if (password !== confirmPassword) throw createError(400, 'Passwords do not match.')
+  if (password !== confirmPassword)
+    return res.render('signup', { error: 'Passwords do not match.' })
 
   await User.register(
     new User({
@@ -33,13 +33,12 @@ exports.signupPost = async (req, res, next) => {
       isAdmin: false,
     }),
     req.body.password,
-    function (err) {
-      console.log(req.body)
+    (err) => {
       if (err) {
         console.log('error while user signup!', err)
         return next(err)
       }
-      passport.authenticate('local')(req, res, function () {
+      passport.authenticate('local')(req, res, () => {
         req.flash('success', `Successfully Signed Up! Nice to meet you ${req.body.firstname}`)
         console.log('user registered!')
         res.redirect('/')
@@ -73,15 +72,13 @@ exports.updatePost = async (req, res, next) => {
   let { lastname } = req.body
   let { password } = req.body
   let { confirmPassword } = req.body
-  let id = req.user._id
-  console.log(req.body)
 
   if (!firstname || !lastname || !password || !email)
-    throw createError(400, 'all Fields are required')
+    return next(createError(400, 'All Fields are required'))
   firstname = trimStr(firstname)
   lastname = trimStr(lastname)
   email = trimStr(email)
-  if (password !== confirmPassword) throw createError(400, 'Passwords do not match.')
+  if (password !== confirmPassword) return next(createError(400, 'Passwords do not match.'))
 
   await User.findByIdAndUpdate(
     req.user._id,
@@ -92,12 +89,11 @@ exports.updatePost = async (req, res, next) => {
       lastname,
       password,
     },
-    function (err, uuu) {
+    (err, result) => {
       if (err) {
-        throw err
-      } else {
-        console.log(uuu)
+        return res.status(500).json(err)
       }
+      console.log(result)
     }
   )
   res.redirect('/')

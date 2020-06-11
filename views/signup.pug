@@ -3,9 +3,9 @@ extends layout
 block content
   h2 Sign Up!
   .row1
-  if error
-    .col-md-5.mx-auto
-      .alert.alert-warning(role='alert')
+  if error != ''
+    .col-md-5mx-auto
+      .alert.alert-error #{error}
         #{error}
   .row1
     form(action="/signup",method="post")
