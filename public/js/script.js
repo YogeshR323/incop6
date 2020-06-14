@@ -22,16 +22,3 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 })
 
-//         fetch(serverUrl, {
-//             method,
-//             headers,
-//             body: JSON.stringify({ userId, locationId, heartclass }),
-//         }).then(() => {
-//             console.log('hellllllo')
-//             window.location.reload()
-//         })
-//     }
-
-// for (let i = 0; i < elements.length; i++) {
-//   elements[i].addEventListener('click', updateRateTable)
-// }

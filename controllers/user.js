@@ -87,7 +87,6 @@ exports.updatePost = async (req, res, next) => {
       email,
       firstname,
       lastname,
-      password,
     },
     (err, result) => {
       if (err) {
@@ -96,5 +95,22 @@ exports.updatePost = async (req, res, next) => {
       console.log(result)
     }
   )
+
+  User.findByIdAndUpdate(req.user._id).then(
+    (sanitizedUser) => {
+      if (sanitizedUser) {
+        sanitizedUser.setPassword(password, () => {
+          sanitizedUser.save()
+          res.status(200).json({ message: 'password reset successful' })
+        })
+      } else {
+        res.status(500).json({ message: 'This user does not exist' })
+      }
+    },
+    (err) => {
+      console.error(err)
+    }
+  )
+
   res.redirect('/')
 }

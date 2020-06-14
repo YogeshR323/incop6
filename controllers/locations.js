@@ -12,13 +12,11 @@ const commentsGet = async (location_id) => {
     {},
     { sort: { updatedAt: 'desc' } }
   )
-  console.log(comments)
   return comments
 }
 
 exports.locationsGet = (req, res, next) => {
   return Location.find({ isApproved: true }).then((locations) => {
-    // console.log(locations)
     res.render('locations', {
       user: req.user,
       locations,
@@ -106,7 +104,6 @@ exports.locationGet = async (req, res, next) => {
 exports.ratingPost = async (req, res, next) => {
   try {
     const { userId, locationId, heartstate } = req.body
-    console.log(userId)
 
     if (userId != null) {
       let ratestate = 0
@@ -166,10 +163,6 @@ exports.commentPost = async (req, res, next) => {
   } catch (error) {
     res.render('login', { error })
   }
-
-  // console.log(userId)
-  // console.log(locationId)
-  // res.redirect('back');
 }
 
 /** ****************************************** */
@@ -178,7 +171,7 @@ exports.commentPost = async (req, res, next) => {
 
 exports.adminPanelGet = (req, res, next) => {
   return Location.find({ isApproved: false }).then((locations) => {
-    console.log(locations.length)
+
     res.render('adminPanel', {
       user: req.user,
       locations,
